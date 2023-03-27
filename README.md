@@ -8,10 +8,10 @@ PoolC Unity Optimization 세미나 퀴즈
 3. Cube Spanwer의 Spawn Time마다 새로운 큐브가 생성된다.
 
 ### 스크립트 및 주요 파일 설명
-Assets/Scenes/SampleScene.scene: 여러분들이 테스트를 진행할 scene
-Assets/Scripts/CubeSpawner.cs: 큐브를 생성하는 script (사용자의 취향에 맞게 수정 가능)
-Assets/Scripts/ObjectPool.cs: 오브젝트 풀을 구현할 script (사용하지 않고 별도의 스크립트 사용 가능)
-Assets/Cube.prefab: 생성할 큐브 프리팹
+- Assets/Scenes/SampleScene.scene: 여러분들이 테스트를 진행할 scene
+- Assets/Scripts/CubeSpawner.cs: 큐브를 생성하는 script (사용자의 취향에 맞게 수정 가능)
+- Assets/Scripts/ObjectPool.cs: 오브젝트 풀을 구현할 script (사용하지 않고 별도의 스크립트 사용 가능)
+- Assets/Cube.prefab: 생성할 큐브 프리팹
 
 ## 해야 될 것
 1. 큐브가 유니티의 Instantiate/Destory를 통해서 생성/해제되고 있는 것을 Object Pool을 통해서 생성/해제되도록 만들 것
