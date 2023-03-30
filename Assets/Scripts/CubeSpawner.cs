@@ -25,6 +25,9 @@ public class CubeSpawner : MonoBehaviour
     /// 생성된 큐브를 관리하는 리스트
     /// </summary>
     private List<GameObject> cubeList = new List<GameObject>();
+
+
+    public GameObject OPScript;
     
     // Start is called before the first frame update
     void Start()
@@ -38,18 +41,19 @@ public class CubeSpawner : MonoBehaviour
         // 키를 누르면 생성 및 제거
         if (Input.GetKey(KeyCode.Space))
         {
-            var go = Instantiate(CubePrefab, SpawnPos, RandomRot());
+
+            var go = ObjectPool.instance.GetCube();
             cubeList.Add(go);
         }
         
         if (Input.GetKey(KeyCode.Return))
         {
-            if (cubeList.Any())
+            if (cubeList.Any()) // Any()는 gc가 발생해서 안 쓰는 게 좋을듯?
             {
                 var item = cubeList.Last();
                 if (item != null)
                 {
-                    Destroy(item);
+                    ObjectPool.instance.ReturnCubeToQueue(item);
                     cubeList.Remove(item);
                 }
             }
@@ -64,8 +68,8 @@ public class CubeSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(SpawnTime);
-            var go = Instantiate(CubePrefab, SpawnPos, RandomRot());
+            yield return YieldInstructionCache.WaitForSeconds(SpawnTime);
+            var go = ObjectPool.instance.GetCube();
             cubeList.Add(go);
         }
     }
